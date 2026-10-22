@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rajesh Yadav Gorla</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Rajesh Yadav Gorla, mechanical design engineer: wind-tunnel models, motorsport hardware and 3D CAD. CATIA V5, Siemens NX, GD&T.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineer's drawing set. Each project is a sheet with a title block; navy ink, one orange datum colour. */
+:root {
+  --bg: #f4f6f8;
+  --sheet: #ffffff;
+  --ink: #13233f;
+  --text: #26313d;
+  --muted: #5d6b7a;
+  --rule: #d5dce4;
+  --accent: #e2741b;
+  --accent-ink: #ffffff;
+  --plate: #ffffff;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c131d; --sheet: #121c29; --ink: #e8eef5; --text: #c9d3de; --muted: #8d9bab;
+    --rule: #26354a; --accent: #f59a3c; --accent-ink: #0c131d; --plate: #f2f4f6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c131d; --sheet: #121c29; --ink: #e8eef5; --text: #c9d3de; --muted: #8d9bab;
+  --rule: #26354a; --accent: #f59a3c; --accent-ink: #0c131d; --plate: #f2f4f6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 400 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); text-wrap: balance; margin: 0; }
+.label { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+img, video { max-width: 100%; display: block; }
+
+/* top nav */
+nav.top { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; justify-content: space-between; padding-block: 18px; border-bottom: 1px solid var(--rule); }
+nav.top .mark { font: 700 15px/1 var(--display); font-stretch: 112%; color: var(--ink); letter-spacing: .02em; }
+nav.top ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; }
+nav.top a { font: 500 13px/1 var(--mono); text-decoration: none; color: var(--muted); }
+nav.top a:hover { color: var(--ink); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-block: 48px 40px; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(42px, 7vw, 76px); line-height: .95; font-weight: 800; font-stretch: 75%; letter-spacing: -.01em; text-transform: uppercase; }
+.hero .role { font: 600 clamp(18px, 2.2vw, 22px)/1.35 var(--display); font-stretch: 100%; color: var(--ink); margin: 18px 0 14px; }
+.hero .role span { color: var(--accent); }
+.hero p.lede { margin: 0 0 22px; max-width: 34em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { font: 500 12.5px/1 var(--mono); padding: 8px 10px; border: 1px solid var(--rule); color: var(--ink); background: var(--sheet); }
+.chip.key { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { font: 600 14px/1 var(--body); padding: 12px 16px; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
+.btn.primary { background: var(--ink); color: var(--bg); }
+.figure-video { position: relative; border: 1px solid var(--rule); background: #000; }
+.figure-video video { width: 100%; aspect-ratio: 1280 / 674; object-fit: cover; }
+figcaption, .cap { font: 400 12.5px/1.45 var(--mono); color: var(--muted); margin-top: 8px; }
+
+/* numbers strip */
+.numbers { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); margin-bottom: 64px; }
+.numbers div { padding: 16px 16px 18px 0; min-width: 0; }
+.numbers div + div { padding-left: 16px; border-left: 1px solid var(--rule); }
+.numbers b { display: block; font: 800 34px/1 var(--display); font-stretch: 80%; color: var(--ink); font-variant-numeric: tabular-nums; }
+.numbers span { font-size: 13.5px; color: var(--muted); }
+
+/* sections */
+section.block { margin-bottom: 72px; scroll-margin-top: 16px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 800; font-stretch: 78%; text-transform: uppercase; letter-spacing: .01em; }
+
+/* project sheet */
+.sheet { background: var(--sheet); border: 1px solid var(--rule); margin-bottom: 28px; }
+.sheet-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 26px; }
+.sheet-body > * { min-width: 0; }
+.sheet h3 { font-size: clamp(22px, 2.8vw, 28px); font-weight: 700; font-stretch: 90%; line-height: 1.15; margin-bottom: 10px; }
+.sheet p { margin: 0 0 14px; max-width: 62ch; }
+.sheet ul { margin: 0 0 16px; padding-left: 18px; }
+.sheet li { margin-bottom: 7px; }
+.sheet li::marker { color: var(--accent); }
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 6px 0 16px; }
+.result { border-left: 3px solid var(--accent); padding: 6px 0 6px 12px; }
+.result b { display: block; font: 800 26px/1.05 var(--display); font-stretch: 82%; color: var(--ink); font-variant-numeric: tabular-nums; }
+.result span { font-size: 13px; color: var(--muted); }
+.plate { background: var(--plate); padding: 8px; border: 1px solid var(--rule); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.grid2 > *, .grid3 > * { min-width: 0; }
+.stack { display: grid; gap: 14px; align-content: start; }
+.note { border: 1px dashed var(--accent); padding: 12px 14px; font-size: 14.5px; }
+.note strong { color: var(--ink); }
+
+/* title block, like the corner of a drawing */
+.titleblock { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; }
+.titleblock div { padding: 8px 12px 10px; border-right: 1px solid var(--rule); min-width: 0; overflow-wrap: anywhere; }
+.titleblock div:last-child { border-right: 0; }
+.titleblock small { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.titleblock span { color: var(--ink); }
+
+/* experience */
+.roles { display: grid; gap: 0; }
+.role-row { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.role-row > * { min-width: 0; }
+.role-row .when { font: 500 13px/1.5 var(--mono); color: var(--muted); }
+.role-row h3 { font-size: 21px; font-stretch: 92%; font-weight: 700; }
+.role-row .org { color: var(--muted); margin: 2px 0 10px; font-size: 14.5px; }
+.role-row ul { margin: 0; padding-left: 18px; }
+.role-row li { margin-bottom: 6px; }
+.role-row li::marker { color: var(--accent); }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.skills > div { min-width: 0; }
+.skills h3 { font-size: 17px; font-stretch: 95%; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+.skills p { margin: 0; font-size: 15px; }
+
+/* contact */
+.contact { background: var(--ink); color: var(--bg); padding: 32px 28px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; margin-bottom: 40px; }
+.contact > * { min-width: 0; }
+.contact h2 { color: var(--bg); font-size: clamp(26px, 3.6vw, 34px); font-weight: 800; font-stretch: 80%; text-transform: uppercase; }
+.contact p { margin: 10px 0 0; }
+.contact .email { font: 500 17px/1.4 var(--mono); overflow-wrap: anywhere; user-select: all; }
+.contact .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+.contact .btn { border-color: var(--bg); color: var(--bg); }
+.contact .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.contact a { color: var(--bg); }
+footer { font: 400 12.5px/1.5 var(--mono); color: var(--muted); padding-bottom: 32px; }
+
+@media (max-width: 820px) {
+  .hero, .sheet-body, .contact { grid-template-columns: 1fr; }
+  .hero { padding-block: 32px 28px; gap: 28px; }
+  .numbers { grid-template-columns: 1fr 1fr; }
+  .numbers div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .numbers div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .titleblock { grid-template-columns: 1fr 1fr; }
+  .titleblock div { border-bottom: 1px solid var(--rule); }
+  .skills { grid-template-columns: 1fr; }
+  .role-row { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (max-width: 460px) {
+  .grid3 { grid-template-columns: 1fr 1fr; }
+  .sheet-body { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<nav class="top" aria-label="Sections">
+  <span class="mark">R. Y. GORLA</span>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Rajesh Yadav Gorla</h1>
+    <div class="role">Mechanical design engineer <span>/</span> wind-tunnel models, motorsport hardware and 3D CAD</div>
+    <p class="lede">I design parts that get made and measured. I spent 17 months releasing Body-in-White components for the Honda 0 α, then led a wind-tunnel model study and designed motorsport hardware during my MSc at Coventry University.</p>
+    <div class="chips">
+      <span class="chip key">No visa sponsorship required</span>
+      <span class="chip">Based in the UK</span>
+      <span class="chip">Full UK driving licence</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="#projects">See the projects</a>
+      <a class="btn" href="assets/Rajesh_Gorla_CV.pdf">Download CV (PDF)</a>
+    </div>
+  </div>
+  <figure style="margin:0">
+    <div class="figure-video">
+      <video src="assets/drivaer-notchback.mp4" poster="assets/drivaer-poster.jpg" autoplay muted loop playsinline controls preload="metadata" aria-label="Timelapse of the 20% scale DrivAer notchback model in the Coventry University wind tunnel"></video>
+    </div>
+    <figcaption>20% scale DrivAer notchback, Coventry University wind tunnel. Wool tufts, speed sweep to 45 m/s. 14× speed.</figcaption>
+  </figure>
+</header>
+
+<div class="numbers" role="list">
+  <div role="listitem"><b>100+</b><span>GD&amp;T drawings released for Honda</span></div>
+  <div role="listitem"><b>±5%</b><span>CFD vs wind-tunnel drag correlation</span></div>
+  <div role="listitem"><b>−9.9%</b><span>Drag coefficient on a 750 Formula car</span></div>
+  <div role="listitem"><b>1</b><span>Formula Student part made and fitted</span></div>
+</div>
+
+<section class="block" id="projects">
+  <div class="sec-head"><h2>Projects</h2><span class="label">4 sheets</span></div>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 1 · Wind tunnel</div>
+        <h3>DrivAer wind-tunnel model and CFD study</h3>
+        <p>A 20% scale DrivAer model tested with three rear ends (fastback, notchback, estate) and two underbodies, then the same cases in CFD.</p>
+        <ul>
+          <li>Led the team that CAD-modelled and FDM 3D-printed the model, with 62 surface-pressure taps.</li>
+          <li>Planned the test programme: forces, Reynolds-number sweeps, ±12° yaw and wool-tuft visualisation.</li>
+          <li>Built a 3.63-million-cell STAR-CCM+ model, mesh-independent to within 2% Cd.</li>
+        </ul>
+        <div class="results">
+          <div class="result"><b>5.1% / 1.1%</b><span>CFD vs tunnel, Cd / CL</span></div>
+          <div class="result"><b>−5.3%</b><span>Drag, smooth underbody (lift +27%)</span></div>
+        </div>
+        <div class="note"><strong>What it taught me:</strong> the data is only as good as the model. Accurate geometry and repeatable configuration changes decide whether a 5% difference is real. Recommended next step: keep the detailed underbody and add a front splitter to bring lift towards neutral.</div>
+      </div>
+      <div class="stack">
+        <figure style="margin:0"><img src="assets/tunnel-model.jpg" alt="DrivAer scale model mounted in the Coventry University wind tunnel" loading="lazy"><figcaption>The model in the tunnel</figcaption></figure>
+        <figure style="margin:0"><div class="plate"><img src="assets/yaw-chart.jpg" alt="Chart of drag coefficient against yaw angle for fastback, notchback and estate" loading="lazy"></div><figcaption>Drag rises with yaw, least for the fastback</figcaption></figure>
+        <div class="grid2">
+          <figure style="margin:0"><img src="assets/wake-detailed.jpg" alt="CFD wake behind the car with detailed underbody" loading="lazy"><figcaption>Wake, detailed underbody</figcaption></figure>
+          <figure style="margin:0"><img src="assets/wake-smooth.jpg" alt="CFD wake behind the car with smooth underbody" loading="lazy"><figcaption>Wake, smooth underbody</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div><small>Scale</small><span>1:5 (20%)</span></div>
+      <div><small>Role</small><span>Group lead, team of 5</span></div>
+      <div><small>Tools</small><span>CAD, FDM, STAR-CCM+</span></div>
+      <div><small>Date</small><span>Apr 2026</span></div>
+      <div><small>Context</small><span>MSc Aerodynamics</span></div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 2 · Race car aerodynamics</div>
+        <h3>750 Formula aerodynamic package</h3>
+        <p>My MSc dissertation: reduce the drag of a real 750 Motor Club race car with rule-compliant CAD changes, verifying each one in CFD.</p>
+        <ul>
+          <li>Found and reviewed 452 problem regions in the supplied CAD before meshing.</li>
+          <li>Ran a 13-level mesh study (1.1 to 7.6 million cells) and chose a 6.4-million-cell mesh.</li>
+          <li>Designed a single-element NACA 0012 rear wing, diffuser and wheel-arch inlets in CATIA V5, within the class size and height limits, one change at a time.</li>
+        </ul>
+        <div class="results">
+          <div class="result"><b>−9.9%</b><span>Cd, 0.537 to 0.484</span></div>
+          <div class="result"><b>771 → 708 N</b><span>Drag force at 50 m/s</span></div>
+        </div>
+        <div class="note"><strong>The trade-off:</strong> downforce fell by about 47% (|Cl| 0.427 to 0.225). This is a drag-optimised design, not a proven lap-time gain. Next step: minimise drag at a fixed minimum downforce and axle balance.</div>
+      </div>
+      <div class="stack">
+        <figure style="margin:0"><div class="plate"><img src="assets/f750-car.jpg" alt="750 Formula car CAD model" loading="lazy" style="margin:0 auto; max-height:240px"></div><figcaption>Baseline vehicle CAD</figcaption></figure>
+        <div class="grid3">
+          <figure style="margin:0"><img src="assets/f750-wing.jpg" alt="NACA 0012 rear wing in CATIA" loading="lazy"><figcaption>Rear wing</figcaption></figure>
+          <figure style="margin:0"><img src="assets/f750-inlets.jpg" alt="Wheel-arch inlets in CATIA" loading="lazy"><figcaption>Wheel-arch inlets</figcaption></figure>
+          <figure style="margin:0"><img src="assets/f750-diffuser.jpg" alt="Diffuser surface in CATIA" loading="lazy"><figcaption>Diffuser</figcaption></figure>
+        </div>
+        <figure style="margin:0"><div class="plate"><img src="assets/f750-chart.jpg" alt="Bar chart of Cd and downforce for each design stage" loading="lazy"></div><figcaption>Every stage cut drag; downforce fell too</figcaption></figure>
+        <div class="grid2">
+          <figure style="margin:0"><img src="assets/f750-yplus.jpg" alt="Wall y-plus contour on the car" loading="lazy"><figcaption>Wall y+</figcaption></figure>
+          <figure style="margin:0"><img src="assets/f750-cp.jpg" alt="Surface pressure coefficient contour on the car" loading="lazy"><figcaption>Pressure coefficient</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div><small>Vehicle</small><span>750 Formula</span></div>
+      <div><small>Mesh</small><span>6,385,896 cells</span></div>
+      <div><small>Tools</small><span>CATIA V5, STAR-CCM+</span></div>
+      <div><small>Date</small><span>Apr–Aug 2026</span></div>
+      <div><small>Context</small><span>MSc dissertation</span></div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 3 · Motorsport hardware</div>
+        <h3>Formula Student steering rack mount</h3>
+        <p>A new steering rack mount for the Coventry University Formula Student car, designed around the existing packaging and interfaces.</p>
+        <ul>
+          <li>Modelled in CATIA V5 using the PR25-T drafting files as reference geometry.</li>
+          <li>Revised the design to meet the Formula Student technical regulations.</li>
+          <li>Detailed for laser cutting in aluminium. The part was manufactured and fitted to the car.</li>
+        </ul>
+      </div>
+      <figure style="margin:0"><img src="assets/fs-car.jpg" alt="Coventry University Formula Student car on track" loading="lazy"><figcaption>Coventry University Formula Student car</figcaption></figure>
+    </div>
+    <div class="titleblock">
+      <div><small>Material</small><span>Aluminium</span></div>
+      <div><small>Process</small><span>Laser cut</span></div>
+      <div><small>Tools</small><span>CATIA V5</span></div>
+      <div><small>Date</small><span>Sep 2025–Sep 2026</span></div>
+      <div><small>Status</small><span>Made and fitted</span></div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 4 · Design and optimisation</div>
+        <h3>Lightweight UAV propeller guard</h3>
+        <p>A 3D-printed propeller guard taken from requirements to an optimised design using a full design process: QFD, morphological analysis, Pugh matrix, FMEA and DFX.</p>
+        <ul>
+          <li>Built a parametric CATIA V5 model with variable ring diameter, rib count and rib thickness.</li>
+          <li>Checked impact (50 N), flight (10 N) and crush (100 N) load cases in FEA.</li>
+          <li>Wrote a Python (SciPy) optimisation that met the stress and deflection limits at minimum mass.</li>
+        </ul>
+      </div>
+      <div class="results" style="align-content:start">
+        <div class="result"><b>−23%</b><span>Mass vs the initial design</span></div>
+        <div class="result"><b>6 ribs</b><span>2.2 mm thick, 160 mm diameter</span></div>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div><small>Process</small><span>3D printing</span></div>
+      <div><small>Loads</small><span>50 / 10 / 100 N</span></div>
+      <div><small>Tools</small><span>CATIA V5, FEA, Python</span></div>
+      <div><small>Date</small><span>2025–26</span></div>
+      <div><small>Context</small><span>MSc coursework</span></div>
+    </div>
+  </article>
+</section>
+
+<section class="block" id="experience">
+  <div class="sec-head"><h2>Experience</h2><span class="label">2022 – present</span></div>
+  <div class="roles">
+    <div class="role-row">
+      <div class="when">Mar 2024 – Aug 2025<br>India · Full time</div>
+      <div>
+        <h3>Mechanical Design Engineer</h3>
+        <div class="org">L&amp;T Technology Services · Client: Honda EV programme (Honda 0 α, Japan Mobility Show 2025)</div>
+        <ul>
+          <li>Designed 10+ Body-in-White upper-body components in CATIA V5: roof panels, roof bows and A/B/C pillars, from detailed design to engineering release.</li>
+          <li>Produced 100+ GD&amp;T drawings using Functional Tolerancing &amp; Annotation.</li>
+          <li>Designed JIS-spec and mild steel sheet-metal parts for spot welding, hemming and adhesive bonding.</li>
+          <li>Managed Engineering Change Requests and revision control in ENOVIA, in a 15-member cross-functional team.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="when">Sep 2025 – Sep 2026<br>Coventry, UK</div>
+      <div>
+        <h3>Formula Student CAD Support</h3>
+        <div class="org">Coventry University Formula Student team</div>
+        <ul><li>Designed the steering rack mount on sheet 3, from CAD to a fitted part.</li></ul>
+      </div>
+    </div>
+    <div class="role-row">
+      <div class="when">Apr 2022 – Feb 2024<br>Bengaluru, India</div>
+      <div>
+        <h3>CAD Engineer (Paid Internship)</h3>
+        <div class="org">Invictus Defence Systems</div>
+        <ul><li>Modelled and revised defence UAV airframe geometry in CATIA V5, making the design changes identified through ANSYS airflow analysis.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <div class="sec-head"><h2>Skills and education</h2><span class="label">Tools · Training · Degrees</span></div>
+  <div class="skills">
+    <div><h3>CAD and drawings</h3><p>Siemens NX, CATIA V5 (Part, Assembly, Generative Shape Design, Drafting, FT&amp;A), Autodesk Alias, GD&amp;T, ENOVIA PLM, engineering change control.</p></div>
+    <div><h3>Analysis and test</h3><p>FEA (ANSYS), CFD (Simcenter STAR-CCM+), wind-tunnel testing, mesh independence, CFD-to-tunnel correlation, Python (SciPy), MATLAB/Simulink.</p></div>
+    <div><h3>Manufacture</h3><p>Design for manufacture and assembly, sheet metal, spot welding, hemming, adhesive bonding, laser-cut aluminium, FDM 3D printing, plastic part design.</p></div>
+    <div><h3>Education</h3><p>MSc Automotive Engineering (Merit), Coventry University, 2025–26.<br>BTech Aerospace Engineering (First Class), SASTRA Deemed University, 2018–22.</p></div>
+    <div><h3>Training</h3><p>Skill-Lync: Automotive Sheet Metal Design using Siemens NX / CATIA V5; Geometric Dimensioning and Tolerancing; Automotive Plastic Design using CATIA V5 (2023).</p></div>
+    <div><h3>Languages</h3><p>English (fluent). German and Japanese (beginner).</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <h2>Get in touch</h2>
+    <p>Open to mechanical design roles in motorsport and aerodynamics. No visa sponsorship required, and happy to relocate.</p>
+  </div>
+  <div>
+    <div class="label" style="color:inherit; opacity:.75">Email</div>
+    <div class="email" id="email">rajeshgorla3006@gmail.com</div>
+    <div class="row">
+      <button class="btn primary" type="button" id="copy">Copy email</button>
+      <a class="btn" href="https://www.linkedin.com/in/rajesh-yadav-gorla-8bb413222/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p style="font-size:14px; opacity:.8">+44 7810 225281</p>
+  </div>
+</section>
+
+<footer>© 2026 Rajesh Yadav Gorla · Coventry, United Kingdom</footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var email = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected, press Ctrl+C';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectIt);
+    } catch (e) { selectIt(); }
+    setTimeout(function () { btn.textContent = 'Copy email'; }, 2500);
+  });
+  var v = document.querySelector('video');
+  if (v && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+})();
+</script>
+
+</body>
+</html>
