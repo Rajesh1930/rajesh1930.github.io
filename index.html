@@ -204,7 +204,7 @@ footer { font: 400 12.5px/1.5 var(--mono); color: var(--muted); padding-bottom: 
 </div>
 
 <section class="block" id="projects">
-  <div class="sec-head"><h2>Projects</h2><span class="label">4 sheets</span></div>
+  <div class="sec-head"><h2>Projects</h2><span class="label">6 sheets</span></div>
 
   <article class="sheet">
     <div class="sheet-body">
@@ -327,6 +327,87 @@ footer { font: 400 12.5px/1.5 var(--mono); color: var(--muted); padding-bottom: 
       <div><small>Tools</small><span>CATIA V5, FEA, Python</span></div>
       <div><small>Date</small><span>2025–26</span></div>
       <div><small>Context</small><span>MSc coursework</span></div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 5 · Aeroelasticity</div>
+        <h3>Supersonic swept wing: fluid-structure interaction</h3>
+        <p>A swept wing designed in CATIA V5 and analysed at Mach 2, coupling the aerodynamic loads from Fluent into a structural model to find deformation, stress and strain.</p>
+        <ul>
+          <li>Built the wing in CATIA V5 from three DAVIS Basic B-24 airfoil sections (chords 3,757, 1,272 and 909 mm), about 12.3 m span and 65.3° leading-edge sweep.</li>
+          <li>CFD in Ansys Fluent at Mach 2 and 2° angle of attack: pressure-based solver, k-epsilon turbulence model, pressure far-field enclosure, Cl and Cd report definitions.</li>
+          <li>Transferred the wing surface forces to Ansys Static Structural through System Coupling.</li>
+        </ul>
+        <div class="results">
+          <div class="result"><b>497 kPa</b><span>Peak surface pressure, leading edge</span></div>
+          <div class="result"><b>210 MPa</b><span>Peak von Mises stress, at the kink</span></div>
+          <div class="result"><b>0.80 m</b><span>Tip deflection</span></div>
+        </div>
+        <div class="note"><strong>What it showed:</strong> stress and strain concentrate where the swept outer panel meets the inner section, so that junction drives the structural design.</div>
+      </div>
+      <div class="stack">
+        <div class="grid3" style="grid-template-columns:1.6fr 1fr 1fr">
+          <figure style="margin:0"><div class="plate"><img src="assets/wing-dims.jpg" alt="Wing planform drawing with dimensions" loading="lazy"></div><figcaption>Planform, mm</figcaption></figure>
+          <figure style="margin:0"><img src="assets/wing-wire.jpg" alt="Wing airfoil sections wireframe in CATIA" loading="lazy" style="max-height:170px;margin:0 auto"><figcaption>Airfoil sections</figcaption></figure>
+          <figure style="margin:0"><img src="assets/wing-cad.jpg" alt="Wing surface model in CATIA" loading="lazy" style="max-height:170px;margin:0 auto"><figcaption>CATIA V5 model</figcaption></figure>
+        </div>
+        <figure style="margin:0"><div class="plate"><img src="assets/wing-p.jpg" alt="Static pressure contour on the wing at Mach 2" loading="lazy"></div><figcaption>Static pressure on the wing, Mach 2</figcaption></figure>
+        <div class="grid2">
+          <figure style="margin:0"><img src="assets/wing-stress.jpg" alt="Von Mises stress on the wing" loading="lazy"><figcaption>Von Mises stress</figcaption></figure>
+          <figure style="margin:0"><img src="assets/wing-deform.jpg" alt="Total deformation of the wing" loading="lazy"><figcaption>Total deformation</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div><small>Flow</small><span>Mach 2, 2° AoA</span></div>
+      <div><small>Airfoil</small><span>DAVIS Basic B-24</span></div>
+      <div><small>Tools</small><span>CATIA V5, Fluent, Static Structural</span></div>
+      <div><small>Date</small><span>Apr 2023</span></div>
+      <div><small>Context</small><span>Aircraft design internship</span></div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-body">
+      <div>
+        <div class="label">Sheet 6 · High-speed CFD</div>
+        <h3>Double wedge at Mach 3 and Mach 10</h3>
+        <p>A 2D double-wedge body at 4° angle of attack, simulated at supersonic (Mach 3) and hypersonic (Mach 10) speeds to compare the shock structure.</p>
+        <ul>
+          <li>Built the geometry and a structured quad mesh, refined around the body, in Ansys 2022 R1.</li>
+          <li>Density-based Fluent solver with air as an ideal gas.</li>
+          <li>Compared static pressure, total pressure, velocity, Mach number and vorticity between the two cases.</li>
+        </ul>
+        <div class="results">
+          <div class="result"><b>1.05 MPa</b><span>Peak static pressure, Mach 3</span></div>
+          <div class="result"><b>35.1 MPa</b><span>Peak static pressure, Mach 10</span></div>
+        </div>
+        <div class="note"><strong>What it showed:</strong> a detached bow shock forms in both cases. At Mach 10 it sits closer to the body and is swept back more sharply, and the pressure behind it is about 30 times higher.</div>
+      </div>
+      <div class="stack">
+        <div class="grid2">
+          <figure style="margin:0"><div class="plate"><img src="assets/hs-geometry.jpg" alt="Double wedge geometry" loading="lazy"></div><figcaption>Geometry</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-mesh.jpg" alt="Quad mesh around the body" loading="lazy"><figcaption>Mesh</figcaption></figure>
+        </div>
+        <div class="grid2">
+          <figure style="margin:0"><img src="assets/hs-mach-m3.jpg" alt="Mach number contour at Mach 3" loading="lazy"><figcaption>Mach number, M3</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-mach-m10.jpg" alt="Mach number contour at Mach 10" loading="lazy"><figcaption>Mach number, M10</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-p-m3.jpg" alt="Static pressure contour at Mach 3" loading="lazy"><figcaption>Static pressure, M3</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-p-m10.jpg" alt="Static pressure contour at Mach 10" loading="lazy"><figcaption>Static pressure, M10</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-vort-m3.jpg" alt="Vorticity contour at Mach 3" loading="lazy"><figcaption>Vorticity, M3</figcaption></figure>
+          <figure style="margin:0"><img src="assets/hs-vort-m10.jpg" alt="Vorticity contour at Mach 10" loading="lazy"><figcaption>Vorticity, M10</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div><small>Flow</small><span>Mach 3 and 10, 4° AoA</span></div>
+      <div><small>Solver</small><span>Density-based</span></div>
+      <div><small>Tools</small><span>Ansys Fluent 2022 R1</span></div>
+      <div><small>Date</small><span>Apr 2023</span></div>
+      <div><small>Context</small><span>Aircraft design internship</span></div>
     </div>
   </article>
 </section>
