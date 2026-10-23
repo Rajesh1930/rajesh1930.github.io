@@ -844,6 +844,31 @@ footer { font: 400 12.5px/1.5 var(--mono); color: var(--muted); padding-bottom: 
         </div>
         <div class="tags">NX measurements at SA, SB, SC, SD, SE · Standard diagram (course-supplied)</div>
       </div>
+      <div class="card-item wide">
+        <div class="wide-grid">
+          <a class="zoom" href="assets/roof-main.jpg" target="_blank" rel="noopener"><img src="assets/roof-main.jpg" alt="Roof panel assembly in Siemens NX with front header, three bows and rear header" loading="lazy"></a>
+          <div class="card-item">
+            <div class="label">Roof design</div>
+            <h4>Roof panel and bow structure in Siemens NX</h4>
+            <p>Starting from a supplied roof surface (IGES), I designed the roof outer panel and its reinforcements in NX 11: a front header with mounting and lightening holes, bow 1, a centre bow and bow 2 (with scalloped mastic pads), and a rear header. The outer panel has stiffening embossments.</p>
+            <p>Each part went through a draft analysis against the stamping direction at a 7° threshold. I measured each bow's cross-section (area and second moments) in NX and used those in two spreadsheet checks between each pair of reinforcements.</p>
+            <div class="note"><strong>Result:</strong> all four spans pass the first check (W column). In the second check (Qr ≥ 3.1), the front and bow 1 spans pass. The centre to bow 2 span falls short at 2.19, and the bow 2 to rear span has no result yet (the sheet shows a divide-by-zero), so bow spacing or section there needs revisiting.</div>
+            <a class="dl" href="files/roof-nx.zip" download>Download NX files <span>Assembly + parts + IGES input · .zip · 6.9 MB</span></a>
+          </div>
+        </div>
+        <div class="thumbs">
+          <a href="assets/roof-bows.jpg" target="_blank" rel="noopener"><img src="assets/roof-bows.jpg" alt="Front header, bow 1, centre bow, bow 2 and rear header" loading="lazy"></a>
+          <a href="assets/roof-iso.jpg" target="_blank" rel="noopener"><img src="assets/roof-iso.jpg" alt="Roof outer panel with embossments, isometric" loading="lazy"></a>
+          <a href="assets/roof-draft.jpg" target="_blank" rel="noopener"><img src="assets/roof-draft.jpg" alt="Draft analysis of the roof assembly at 7 degrees" loading="lazy"></a>
+          <a href="assets/roof-fh-draft.jpg" target="_blank" rel="noopener"><img src="assets/roof-fh-draft.jpg" alt="Front header draft analysis" loading="lazy"></a>
+          <a href="assets/roof-bow.jpg" target="_blank" rel="noopener"><img src="assets/roof-bow.jpg" alt="Roof bow with mastic pads" loading="lazy"></a>
+          <a href="assets/roof-sec1.jpg" target="_blank" rel="noopener"><img src="assets/roof-sec1.jpg" alt="Bow section properties measured in NX" loading="lazy"></a>
+          <a href="assets/roof-sec3.jpg" target="_blank" rel="noopener"><img src="assets/roof-sec3.jpg" alt="Centre bow section properties" loading="lazy"></a>
+          <a href="assets/roof-tab1.jpg" target="_blank" rel="noopener"><img src="assets/roof-tab1.jpg" alt="First check: W per span, all OK" loading="lazy"></a>
+          <a href="assets/roof-tab2.jpg" target="_blank" rel="noopener"><img src="assets/roof-tab2.jpg" alt="Second check: Qr per span" loading="lazy"></a>
+        </div>
+        <div class="tags">Reinforcements · Outer panel · Draft analysis · Bow · Section properties · Calculation sheets (click to enlarge)</div>
+      </div>
     </div>
   </div>
 </section>
