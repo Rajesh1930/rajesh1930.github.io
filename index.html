@@ -244,7 +244,7 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
 .intro { place-items: center; align-content: center; padding: 16px; overflow: hidden; background: radial-gradient(70vw 60vh at 50% 42%, #1f2a3d 0%, #121822 45%, #07090d 100%); }
 .intro-bg { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; background: url(assets/toy-intro-poster.jpg) center / cover; filter: blur(28px) brightness(.45) saturate(1.2); }
-.intro-frame { position: relative; height: min(82vh, 640px); aspect-ratio: 474 / 560; max-width: calc(100vw - 32px); box-shadow: 0 30px 80px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.12); overflow: hidden; animation: frame-in .9s cubic-bezier(.2,.8,.2,1) both; }
+.intro-frame { position: relative; height: min(82vh, 640px); aspect-ratio: 474 / 620; max-width: calc(100vw - 32px); box-shadow: 0 30px 80px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.12); overflow: hidden; animation: frame-in .9s cubic-bezier(.2,.8,.2,1) both; }
 .intro-vid { width: 100%; height: 100%; object-fit: cover; display: block; }
 .intro-caption { position: absolute; inset: auto 0 0 0; padding: 70px 22px 22px; background: linear-gradient(180deg, transparent, rgba(8,6,7,.88)); color: #fff; display: grid; gap: 4px; opacity: 0; transform: translateY(24px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
 .intro.named .intro-caption { opacity: 1; transform: none; }
@@ -295,7 +295,7 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
   <div class="intro-frame">
     <video class="intro-vid" id="introVid" poster="assets/toy-intro-poster.jpg" muted playsinline preload="auto"><source src="assets/toy-intro.webm" type="video/webm"><source src="assets/toy-intro.mp4" type="video/mp4"></video>
     <div class="intro-caption" id="introName">
-      <span class="k">From my desk · scale model</span>
+      <span class="k">My scale model · sunset edit</span>
       <b>Rajesh Yadav Gorla</b>
       <span class="r">Mechanical design engineer</span>
     </div>
