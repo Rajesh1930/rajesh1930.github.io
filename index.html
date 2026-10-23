@@ -239,6 +239,8 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro.play { display: grid; }
 .intro.out { opacity: 0; pointer-events: none; }
 .intro-car { width: min(900px, 100%); height: auto; overflow: visible; margin-top: 60px; }
+.intro-sound { position: absolute; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: var(--accent); color: #0f1d33; border: 1.5px solid var(--accent); cursor: pointer; }
+.intro-sound:disabled { background: transparent; color: #f59a3c; cursor: default; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
 .intro-drive { animation: drive-in 1s cubic-bezier(.2,.8,.2,1) both; }
 .intro .wheel > * { transform-box: fill-box; }
@@ -318,16 +320,48 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
       <text x="635" y="38" text-anchor="middle" class="n2">MECHANICAL DESIGN ENGINEER</text>
     </g>
   </svg>
+  <button type="button" class="intro-sound" id="intro-sound">&#9654; Replay with sound</button>
   <button type="button" class="intro-skip" id="intro-skip">Skip intro</button>
 </div>
 <script>
-(function(){var el=document.getElementById('intro'),show=false;
+(function(){
+var el=document.getElementById('intro'),show=false,timer=null,ctx=null;
 try{show=!sessionStorage.getItem('introSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);sessionStorage.setItem('introSeen','1');}catch(e){show=false;}
 if(!show){el.remove();return;}
-el.classList.add('play');
-function done(){if(!el.isConnected)return;el.classList.add('out');setTimeout(function(){el.remove();},600);}
-document.getElementById('intro-skip').addEventListener('click',done);el.addEventListener('click',done);
-setTimeout(done,4200);})();
+function start(){el.classList.remove('play');void el.offsetWidth;el.classList.add('play');clearTimeout(timer);timer=setTimeout(done,4400);}
+function done(){if(!el.isConnected)return;if(ctx){try{ctx.close();}catch(e){}}el.classList.add('out');setTimeout(function(){el.remove();},600);}
+function noise(c,dur){var n=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate),d=n.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;var s=c.createBufferSource();s.buffer=n;return s;}
+function sound(){
+  var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  try{ctx=new AC();}catch(e){return;}
+  var c=ctx,t=c.currentTime+0.05,out=c.createGain();out.gain.value=0.55;out.connect(c.destination);
+  // engine: two detuned saws through a lowpass
+  var lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=420;lp.Q.value=4;
+  var eg=c.createGain();eg.gain.setValueAtTime(0,t);eg.gain.linearRampToValueAtTime(0.5,t+0.15);
+  eg.gain.setValueAtTime(0.5,t+1.0);eg.gain.linearRampToValueAtTime(0.22,t+1.4);eg.gain.setValueAtTime(0.22,t+3.4);eg.gain.linearRampToValueAtTime(0,t+4.2);
+  lp.connect(eg);eg.connect(out);
+  [0,7].forEach(function(det){var o=c.createOscillator();o.type='sawtooth';o.detune.value=det;
+    o.frequency.setValueAtTime(42,t);o.frequency.exponentialRampToValueAtTime(118,t+0.55);o.frequency.exponentialRampToValueAtTime(70,t+0.95);o.frequency.exponentialRampToValueAtTime(46,t+1.5);
+    var lfo=c.createOscillator(),lg=c.createGain();lfo.frequency.value=9;lg.gain.value=2.5;lfo.connect(lg);lg.connect(o.frequency);lfo.start(t);lfo.stop(t+4.3);
+    o.connect(lp);o.start(t);o.stop(t+4.3);});
+  lp.frequency.setValueAtTime(380,t);lp.frequency.linearRampToValueAtTime(1300,t+0.55);lp.frequency.linearRampToValueAtTime(360,t+1.4);
+  // latch click as the hood releases
+  var ck=noise(c,0.05),hp=c.createBiquadFilter(),cg=c.createGain();hp.type='highpass';hp.frequency.value=2500;
+  cg.gain.setValueAtTime(0.9,t+1.1);cg.gain.exponentialRampToValueAtTime(0.001,t+1.15);ck.connect(hp);hp.connect(cg);cg.connect(out);ck.start(t+1.1);
+  // whoosh as the light rises
+  var wh=noise(c,1.4),bp=c.createBiquadFilter(),wg=c.createGain();bp.type='bandpass';bp.Q.value=1.2;
+  bp.frequency.setValueAtTime(300,t+1.4);bp.frequency.exponentialRampToValueAtTime(2400,t+2.6);
+  wg.gain.setValueAtTime(0,t+1.4);wg.gain.linearRampToValueAtTime(0.35,t+2.1);wg.gain.linearRampToValueAtTime(0,t+2.8);
+  wh.connect(bp);bp.connect(wg);wg.connect(out);wh.start(t+1.4);
+  // thud as the hood reaches the top
+  var th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(95,t+2.1);th.frequency.exponentialRampToValueAtTime(45,t+2.35);
+  tg.gain.setValueAtTime(0.9,t+2.1);tg.gain.exponentialRampToValueAtTime(0.001,t+2.45);th.connect(tg);tg.connect(out);th.start(t+2.1);th.stop(t+2.5);
+}
+document.getElementById('intro-skip').addEventListener('click',function(e){e.stopPropagation();done();});
+document.getElementById('intro-sound').addEventListener('click',function(e){e.stopPropagation();if(ctx){try{ctx.close();}catch(x){}ctx=null;}start();sound();this.textContent='♪ Sound on';this.disabled=true;});
+el.addEventListener('click',done);
+start();
+})();
 </script>
 <div class="wrap">
 <nav class="top" aria-label="Sections">
