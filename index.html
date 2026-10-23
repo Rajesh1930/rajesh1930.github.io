@@ -235,10 +235,10 @@ dialog.detail .dlg-body { padding: 22px 24px 28px; display: grid; gap: 14px; }
 dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 
 /* intro animation */
-.intro { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: radial-gradient(800px 400px at 70% 30%, rgba(226,116,27,.14), transparent 60%), linear-gradient(180deg, #0f1d33, #16294a); padding: 16px; cursor: pointer; transition: opacity .6s; }
+.intro { position: fixed; inset: 0; z-index: 100; display: none; justify-items: center; align-content: end; padding: 16px 16px 9vh; cursor: pointer; transition: opacity .6s; background: radial-gradient(42vw 26vh at 80% 57%, rgba(255,236,170,.95), rgba(255,184,84,.45) 45%, transparent 75%), url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201000%20100%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20d%3D%22M0%20100%20L0%2070%20L60%2062%20L130%2040%20L190%2055%20L260%2030%20L330%2052%20L380%2046%20L450%2060%20L520%2050%20L600%2064%20L680%2044%20L760%2026%20L830%2048%20L900%2040%20L1000%2058%20L1000%20100%20Z%22%20fill%3D%22%234a3434%22%20opacity%3D%22.85%22/%3E%3Cpath%20d%3D%22M0%20100%20L0%2082%20L120%2074%20L240%2080%20L380%2070%20L520%2078%20L700%2072%20L860%2080%20L1000%2074%20L1000%20100%20Z%22%20fill%3D%22%232c2226%22/%3E%3C/svg%3E") center 62% / 100% 16vh no-repeat, linear-gradient(180deg, #2c2a40 0%, #6d4a4c 24%, #c9773e 46%, #f0a94f 58%, #f7c768 62%, #3b3638 62.4%, #4a4448 70%, #2a272b 86%, #19171b 100%); }
 .intro.play { display: grid; }
 .intro.out { opacity: 0; pointer-events: none; }
-.intro-car { width: min(900px, 100%); height: auto; overflow: visible; margin-top: 60px; }
+.intro-car { width: min(900px, 100%); height: auto; overflow: visible; }
 .intro-sound { position: absolute; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: var(--accent); color: #0f1d33; border: 1.5px solid var(--accent); cursor: pointer; }
 .intro-sound:disabled { background: transparent; color: #f59a3c; cursor: default; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
@@ -247,8 +247,8 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro .hood { transform-box: view-box; transform-origin: 498px 148px; animation: hood-open 1s 1.1s cubic-bezier(.5,0,.2,1) both; }
 .intro .bay, .intro .beam { opacity: 0; animation: glow .9s 1.4s ease-out forwards; }
 .intro-name { opacity: 0; transform-box: view-box; animation: rise .9s 1.9s cubic-bezier(.2,.8,.2,1) forwards; }
-.intro-name .n1 { font: 800 30px var(--display); font-stretch: 80%; fill: #fff; letter-spacing: .02em; }
-.intro-name .n2 { font: 500 13px var(--mono); fill: #eef3f9; letter-spacing: .14em; }
+.intro-name .n1 { font: 800 30px var(--display); font-stretch: 80%; fill: #fff; letter-spacing: .02em; paint-order: stroke; stroke: rgba(30,20,20,.55); stroke-width: 4px; }
+.intro-name .n2 { font: 500 13px var(--mono); fill: #fff; paint-order: stroke; stroke: rgba(30,20,20,.6); stroke-width: 3px; letter-spacing: .14em; }
 @keyframes drive-in { from { transform: translateX(-110%); } to { transform: none; } }
 @keyframes hood-open { to { transform: rotate(-28deg); } }
 @keyframes glow { to { opacity: 1; } }
@@ -295,28 +295,28 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 <div class="intro" id="intro" aria-hidden="true">
   <svg class="intro-car" viewBox="0 0 800 330" role="img" aria-label="An original muscle car opening its hood">
     <defs>
-      <linearGradient id="ibody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46536a"/><stop offset=".5" stop-color="#1e2635"/><stop offset="1" stop-color="#0f141c"/></linearGradient>
+      <linearGradient id="ibody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b5446"/><stop offset=".22" stop-color="#1c1a1d"/><stop offset=".6" stop-color="#0b0b0d"/><stop offset="1" stop-color="#050506"/></linearGradient>
       <linearGradient id="iglow" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f59a3c" stop-opacity=".85"/><stop offset=".7" stop-color="#e2741b" stop-opacity=".12"/><stop offset="1" stop-color="#e2741b" stop-opacity="0"/></linearGradient>
-      <linearGradient id="iglass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a87a8"/><stop offset="1" stop-color="#0b1220"/></linearGradient>
+      <linearGradient id="iglass" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c36d"/><stop offset=".55" stop-color="#5a3f2c"/><stop offset="1" stop-color="#0d0c0e"/></linearGradient>
     </defs>
-    <line x1="20" y1="276" x2="780" y2="276" stroke="#2b3d5c" stroke-width="2"/>
+    
     <g class="intro-drive">
-      <ellipse cx="400" cy="280" rx="350" ry="9" fill="#000" opacity=".38"/>
+      <ellipse cx="380" cy="279" rx="370" ry="10" fill="#000" opacity=".55"/>
       <path class="beam" d="M506 158 L746 166 L800 -20 L430 -20 Z" fill="url(#iglow)"/>
       <path d="M502 154 L750 162 L746 168 L506 162 Z" fill="#0a0f18"/>
       <path class="bay" d="M502 154 L750 162 L746 168 L506 162 Z" fill="#f59a3c"/>
-      <path d="M46 228 L48 196 Q52 176 98 170 L170 166 Q205 140 250 120 Q300 104 350 102 L418 102 Q458 108 498 148 L752 156 Q766 158 766 176 L764 228 L670 228 A58 58 0 0 0 554 228 L252 228 A58 58 0 0 0 136 228 Z" fill="url(#ibody)" stroke="#5a6a85" stroke-width="1.5"/>
+      <path d="M46 228 L48 196 Q52 176 98 170 L170 166 Q205 140 250 120 Q300 104 350 102 L418 102 Q458 108 498 148 L752 156 Q766 158 766 176 L764 228 L670 228 A58 58 0 0 0 554 228 L252 228 A58 58 0 0 0 136 228 Z" fill="url(#ibody)" stroke="#3a3034" stroke-width="1.5"/>
       <path d="M190 164 Q250 118 350 110 L416 110 Q448 114 484 148 Z" fill="url(#iglass)" opacity=".92"/>
       <line x1="400" y1="110" x2="410" y2="152" stroke="#1e2635" stroke-width="5"/>
       <path d="M70 186 Q200 172 300 176 L740 172" stroke="#3c4a62" stroke-width="1.5" fill="none"/>
-      <path d="M88 204 L752 198" stroke="#e2741b" stroke-width="4"/>
+      <path d="M90 190 Q300 178 750 170" stroke="#f3b35a" stroke-width="1.6" opacity=".55" fill="none"/>
       <rect x="752" y="162" width="14" height="30" rx="2" fill="#0b0f16" stroke="#5a6a85"/>
       <circle cx="759" cy="170" r="4.5" fill="#ffe2b8"/>
       <path d="M48 186 L62 184 L62 198 L48 200 Z" fill="#c1272d"/>
       <path d="M100 172 L142 170 L140 175 L100 177 Z" fill="#11161f"/>
-      <g class="hood"><path d="M498 148 L752 156 L752 164 L500 156 Z" fill="#323d50" stroke="#6b7c99" stroke-width="1.2"/><path d="M600 151 L690 154 L688 158 L602 155 Z" fill="#1e2635"/></g>
-      <g transform="translate(194 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#e2741b"/></g>
-      <g transform="translate(612 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#e2741b"/></g>
+      <g class="hood"><path d="M498 148 L752 156 L752 164 L500 156 Z" fill="#141215" stroke="#7a6152" stroke-width="1.2"/><path d="M600 151 L690 154 L688 158 L602 155 Z" fill="#1e2635"/></g>
+      <g transform="translate(194 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#141416" stroke="#4a4a52" stroke-width="2"/><g stroke="#2e2e34" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#55555c"/></g>
+      <g transform="translate(612 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#141416" stroke="#4a4a52" stroke-width="2"/><g stroke="#2e2e34" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#55555c"/></g>
     </g>
     <g class="intro-name">
       <text x="620" y="12" text-anchor="middle" class="n1">RAJESH YADAV GORLA</text>
