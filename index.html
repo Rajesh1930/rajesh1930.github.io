@@ -244,13 +244,13 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
 .intro-drive { animation: drive-in 1s cubic-bezier(.2,.8,.2,1) both; }
 .intro .wheel > * { transform-box: fill-box; }
-.intro .hood { transform-box: view-box; transform-origin: 555px 152px; animation: hood-open 1s 1.1s cubic-bezier(.5,0,.2,1) both; }
+.intro .hood { transform-box: view-box; transform-origin: 498px 148px; animation: hood-open 1s 1.1s cubic-bezier(.5,0,.2,1) both; }
 .intro .bay, .intro .beam { opacity: 0; animation: glow .9s 1.4s ease-out forwards; }
 .intro-name { opacity: 0; transform-box: view-box; animation: rise .9s 1.9s cubic-bezier(.2,.8,.2,1) forwards; }
 .intro-name .n1 { font: 800 30px var(--display); font-stretch: 80%; fill: #fff; letter-spacing: .02em; }
 .intro-name .n2 { font: 500 13px var(--mono); fill: #eef3f9; letter-spacing: .14em; }
 @keyframes drive-in { from { transform: translateX(-110%); } to { transform: none; } }
-@keyframes hood-open { to { transform: rotate(-34deg); } }
+@keyframes hood-open { to { transform: rotate(-28deg); } }
 @keyframes glow { to { opacity: 1; } }
 @keyframes rise { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
@@ -293,7 +293,7 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
-  <svg class="intro-car" viewBox="0 0 800 330" role="img" aria-label="An original sports coupe opening its hood">
+  <svg class="intro-car" viewBox="0 0 800 330" role="img" aria-label="An original muscle car opening its hood">
     <defs>
       <linearGradient id="ibody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#46536a"/><stop offset=".5" stop-color="#1e2635"/><stop offset="1" stop-color="#0f141c"/></linearGradient>
       <linearGradient id="iglow" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f59a3c" stop-opacity=".85"/><stop offset=".7" stop-color="#e2741b" stop-opacity=".12"/><stop offset="1" stop-color="#e2741b" stop-opacity="0"/></linearGradient>
@@ -301,23 +301,26 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
     </defs>
     <line x1="20" y1="276" x2="780" y2="276" stroke="#2b3d5c" stroke-width="2"/>
     <g class="intro-drive">
-      <ellipse cx="400" cy="278" rx="340" ry="9" fill="#000" opacity=".35"/>
-      <path class="beam" d="M560 160 L736 176 L800 -20 L470 -20 Z" fill="url(#iglow)"/>
-      <path d="M558 158 Q650 162 738 178 L730 196 Q650 186 562 180 Z" fill="#0a0f18"/>
-      <path class="bay" d="M558 158 Q650 162 738 178 L730 196 Q650 186 562 180 Z" fill="#f59a3c"/>
-      <path d="M50 228 L56 200 Q66 180 110 176 L230 170 Q290 118 380 112 L455 112 Q500 118 555 152 Q650 156 742 172 Q760 180 758 208 L756 228 L660 228 A54 54 0 0 0 548 228 L252 228 A54 54 0 0 0 140 228 Z" fill="url(#ibody)" stroke="#5a6a85" stroke-width="1.5"/>
-      <path d="M252 166 Q302 124 380 120 L452 120 Q488 124 530 152 Z" fill="url(#iglass)" opacity=".92"/>
-      <line x1="430" y1="120" x2="438" y2="156" stroke="#1e2635" stroke-width="5"/>
-      <path d="M96 206 L746 200" stroke="#e2741b" stroke-width="3"/>
-      <path d="M742 182 L758 188 L758 198 L744 196 Z" fill="#ffd9a8"/>
-      <path d="M54 196 L68 192 L68 204 L54 208 Z" fill="#c1272d"/>
-      <g class="hood"><path d="M555 152 Q650 156 742 172 L740 180 Q650 164 558 160 Z" fill="#323d50" stroke="#6b7c99" stroke-width="1.2"/><path d="M570 157 Q650 160 728 174" stroke="#9aaac2" stroke-width="1" fill="none" opacity=".6"/></g>
-      <g transform="translate(196 228)"><circle r="44" fill="#0b0f16"/><circle r="31" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="4"><line x1="0" y1="-27" x2="0" y2="27"/><line x1="-27" y1="0" x2="27" y2="0"/><line x1="-19" y1="-19" x2="19" y2="19"/><line x1="-19" y1="19" x2="19" y2="-19"/></g><circle r="6" fill="#e2741b"/></g>
-      <g transform="translate(604 228)"><circle r="44" fill="#0b0f16"/><circle r="31" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="4"><line x1="0" y1="-27" x2="0" y2="27"/><line x1="-27" y1="0" x2="27" y2="0"/><line x1="-19" y1="-19" x2="19" y2="19"/><line x1="-19" y1="19" x2="19" y2="-19"/></g><circle r="6" fill="#e2741b"/></g>
+      <ellipse cx="400" cy="280" rx="350" ry="9" fill="#000" opacity=".38"/>
+      <path class="beam" d="M506 158 L746 166 L800 -20 L430 -20 Z" fill="url(#iglow)"/>
+      <path d="M502 154 L750 162 L746 168 L506 162 Z" fill="#0a0f18"/>
+      <path class="bay" d="M502 154 L750 162 L746 168 L506 162 Z" fill="#f59a3c"/>
+      <path d="M46 228 L48 196 Q52 176 98 170 L170 166 Q205 140 250 120 Q300 104 350 102 L418 102 Q458 108 498 148 L752 156 Q766 158 766 176 L764 228 L670 228 A58 58 0 0 0 554 228 L252 228 A58 58 0 0 0 136 228 Z" fill="url(#ibody)" stroke="#5a6a85" stroke-width="1.5"/>
+      <path d="M190 164 Q250 118 350 110 L416 110 Q448 114 484 148 Z" fill="url(#iglass)" opacity=".92"/>
+      <line x1="400" y1="110" x2="410" y2="152" stroke="#1e2635" stroke-width="5"/>
+      <path d="M70 186 Q200 172 300 176 L740 172" stroke="#3c4a62" stroke-width="1.5" fill="none"/>
+      <path d="M88 204 L752 198" stroke="#e2741b" stroke-width="4"/>
+      <rect x="752" y="162" width="14" height="30" rx="2" fill="#0b0f16" stroke="#5a6a85"/>
+      <circle cx="759" cy="170" r="4.5" fill="#ffe2b8"/>
+      <path d="M48 186 L62 184 L62 198 L48 200 Z" fill="#c1272d"/>
+      <path d="M100 172 L142 170 L140 175 L100 177 Z" fill="#11161f"/>
+      <g class="hood"><path d="M498 148 L752 156 L752 164 L500 156 Z" fill="#323d50" stroke="#6b7c99" stroke-width="1.2"/><path d="M600 151 L690 154 L688 158 L602 155 Z" fill="#1e2635"/></g>
+      <g transform="translate(194 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#e2741b"/></g>
+      <g transform="translate(612 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#262e3d" stroke="#8a97ab" stroke-width="2"/><g stroke="#8a97ab" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#e2741b"/></g>
     </g>
     <g class="intro-name">
-      <text x="635" y="12" text-anchor="middle" class="n1">RAJESH YADAV GORLA</text>
-      <text x="635" y="38" text-anchor="middle" class="n2">MECHANICAL DESIGN ENGINEER</text>
+      <text x="620" y="12" text-anchor="middle" class="n1">RAJESH YADAV GORLA</text>
+      <text x="620" y="38" text-anchor="middle" class="n2">MECHANICAL DESIGN ENGINEER</text>
     </g>
   </svg>
   <button type="button" class="intro-sound" id="intro-sound">&#9654; Replay with sound</button>
@@ -335,16 +338,21 @@ function sound(){
   var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
   try{ctx=new AC();}catch(e){return;}
   var c=ctx,t=c.currentTime+0.05,out=c.createGain();out.gain.value=0.55;out.connect(c.destination);
-  // engine: two detuned saws through a lowpass
-  var lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=420;lp.Q.value=4;
-  var eg=c.createGain();eg.gain.setValueAtTime(0,t);eg.gain.linearRampToValueAtTime(0.5,t+0.15);
-  eg.gain.setValueAtTime(0.5,t+1.0);eg.gain.linearRampToValueAtTime(0.22,t+1.4);eg.gain.setValueAtTime(0.22,t+3.4);eg.gain.linearRampToValueAtTime(0,t+4.2);
-  lp.connect(eg);eg.connect(out);
-  [0,7].forEach(function(det){var o=c.createOscillator();o.type='sawtooth';o.detune.value=det;
-    o.frequency.setValueAtTime(42,t);o.frequency.exponentialRampToValueAtTime(118,t+0.55);o.frequency.exponentialRampToValueAtTime(70,t+0.95);o.frequency.exponentialRampToValueAtTime(46,t+1.5);
-    var lfo=c.createOscillator(),lg=c.createGain();lfo.frequency.value=9;lg.gain.value=2.5;lfo.connect(lg);lg.connect(o.frequency);lfo.start(t);lfo.stop(t+4.3);
-    o.connect(lp);o.start(t);o.stop(t+4.3);});
-  lp.frequency.setValueAtTime(380,t);lp.frequency.linearRampToValueAtTime(1300,t+0.55);lp.frequency.linearRampToValueAtTime(360,t+1.4);
+  // engine: V8-style burble (low saws, lumpy idle, soft distortion)
+  var ws=c.createWaveShaper(),curve=new Float32Array(1024);for(var k=0;k<1024;k++){var x=k/512-1;curve[k]=Math.tanh(2.2*x);}ws.curve=curve;
+  var lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=300;lp.Q.value=5;
+  var lope=c.createGain();lope.gain.value=1;
+  var eg=c.createGain();eg.gain.setValueAtTime(0,t);eg.gain.linearRampToValueAtTime(0.55,t+0.12);
+  eg.gain.setValueAtTime(0.55,t+1.0);eg.gain.linearRampToValueAtTime(0.3,t+1.4);eg.gain.setValueAtTime(0.3,t+3.4);eg.gain.linearRampToValueAtTime(0,t+4.2);
+  ws.connect(lp);lp.connect(lope);lope.connect(eg);eg.connect(out);
+  var am=c.createOscillator(),amg=c.createGain();am.type='square';amg.gain.value=0.45;
+  am.frequency.setValueAtTime(7,t);am.frequency.linearRampToValueAtTime(19,t+0.55);am.frequency.linearRampToValueAtTime(6.5,t+1.5);
+  am.connect(amg);amg.connect(lope.gain);am.start(t);am.stop(t+4.3);
+  [0,-9,12].forEach(function(det,idx){var o=c.createOscillator();o.type=idx===2?'square':'sawtooth';o.detune.value=det;
+    var base=idx===2?0.5:1;
+    o.frequency.setValueAtTime(30*base,t);o.frequency.exponentialRampToValueAtTime(96*base,t+0.55);o.frequency.exponentialRampToValueAtTime(58*base,t+0.95);o.frequency.exponentialRampToValueAtTime(33*base,t+1.6);
+    var g=c.createGain();g.gain.value=idx===2?0.35:0.5;o.connect(g);g.connect(ws);o.start(t);o.stop(t+4.3);});
+  lp.frequency.setValueAtTime(260,t);lp.frequency.linearRampToValueAtTime(1000,t+0.55);lp.frequency.linearRampToValueAtTime(280,t+1.5);
   // latch click as the hood releases
   var ck=noise(c,0.05),hp=c.createBiquadFilter(),cg=c.createGain();hp.type='highpass';hp.frequency.value=2500;
   cg.gain.setValueAtTime(0.9,t+1.1);cg.gain.exponentialRampToValueAtTime(0.001,t+1.15);ck.connect(hp);hp.connect(cg);cg.connect(out);ck.start(t+1.1);
