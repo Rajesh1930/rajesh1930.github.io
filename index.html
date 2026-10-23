@@ -242,17 +242,10 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro-sound { position: absolute; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: var(--accent); color: #0f1d33; border: 1.5px solid var(--accent); cursor: pointer; }
 .intro-sound:disabled { background: transparent; color: #f59a3c; cursor: default; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
-.intro-drive { animation: drive-in 1s cubic-bezier(.2,.8,.2,1) both; }
-.intro .wheel > * { transform-box: fill-box; }
-.intro .hood { transform-box: view-box; transform-origin: 498px 148px; animation: hood-open 1s 1.1s cubic-bezier(.5,0,.2,1) both; }
-.intro .bay, .intro .beam { opacity: 0; animation: glow .9s 1.4s ease-out forwards; }
-.intro-name { opacity: 0; transform-box: view-box; animation: rise .9s 1.9s cubic-bezier(.2,.8,.2,1) forwards; }
-.intro-name .n1 { font: 800 30px var(--display); font-stretch: 80%; fill: #fff; letter-spacing: .02em; paint-order: stroke; stroke: rgba(30,20,20,.55); stroke-width: 4px; }
-.intro-name .n2 { font: 500 13px var(--mono); fill: #fff; paint-order: stroke; stroke: rgba(30,20,20,.6); stroke-width: 3px; letter-spacing: .14em; }
-@keyframes drive-in { from { transform: translateX(-110%); } to { transform: none; } }
-@keyframes hood-open { to { transform: rotate(-28deg); } }
-@keyframes glow { to { opacity: 1; } }
-@keyframes rise { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
+#carGroup { opacity: 0; }
+.intro-name, #introName text { }
+#introName .n1 { font: 800 32px var(--display); font-stretch: 80%; fill: #fff; letter-spacing: .02em; paint-order: stroke; stroke: rgba(30,20,20,.55); stroke-width: 4px; }
+#introName .n2 { font: 500 13px var(--mono); fill: #fff; letter-spacing: .14em; paint-order: stroke; stroke: rgba(30,20,20,.6); stroke-width: 3px; }
 @media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
 
 @media (max-width: 820px) { dialog.detail .dlg-body { padding: 16px; } }
@@ -293,34 +286,52 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
-  <svg class="intro-car" viewBox="0 0 800 330" role="img" aria-label="An original muscle car opening its hood">
+  <svg class="intro-car" viewBox="0 0 900 420" role="img" aria-label="An original muscle car silhouette opens its hood to reveal a running engine">
     <defs>
-      <linearGradient id="ibody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b5446"/><stop offset=".22" stop-color="#1c1a1d"/><stop offset=".6" stop-color="#0b0b0d"/><stop offset="1" stop-color="#050506"/></linearGradient>
-      <linearGradient id="iglow" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f59a3c" stop-opacity=".85"/><stop offset=".7" stop-color="#e2741b" stop-opacity=".12"/><stop offset="1" stop-color="#e2741b" stop-opacity="0"/></linearGradient>
-      <linearGradient id="iglass" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c36d"/><stop offset=".55" stop-color="#5a3f2c"/><stop offset="1" stop-color="#0d0c0e"/></linearGradient>
+      <linearGradient id="gGlass" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8955a" stop-opacity=".55"/><stop offset=".5" stop-color="#2a2022"/><stop offset="1" stop-color="#0c0b0d"/></linearGradient>
+      <radialGradient id="gBay" cx=".5" cy=".6" r=".6"><stop offset="0" stop-color="#ffb35c" stop-opacity=".95"/><stop offset="1" stop-color="#e2741b" stop-opacity="0"/></radialGradient>
+      <linearGradient id="gMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9e2d8"/><stop offset="1" stop-color="#8f877e"/></linearGradient>
+      <clipPath id="cBay"><path d="M500 206 L648 233 L800 225 L650 190 Z"/></clipPath>
+      <filter id="fGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
-    
-    <g class="intro-drive">
-      <ellipse cx="380" cy="279" rx="370" ry="10" fill="#000" opacity=".55"/>
-      <path class="beam" d="M506 158 L746 166 L800 -20 L430 -20 Z" fill="url(#iglow)"/>
-      <path d="M502 154 L750 162 L746 168 L506 162 Z" fill="#0a0f18"/>
-      <path class="bay" d="M502 154 L750 162 L746 168 L506 162 Z" fill="#f59a3c"/>
-      <path d="M46 228 L48 196 Q52 176 98 170 L170 166 Q205 140 250 120 Q300 104 350 102 L418 102 Q458 108 498 148 L752 156 Q766 158 766 176 L764 228 L670 228 A58 58 0 0 0 554 228 L252 228 A58 58 0 0 0 136 228 Z" fill="url(#ibody)" stroke="#3a3034" stroke-width="1.5"/>
-      <path d="M190 164 Q250 118 350 110 L416 110 Q448 114 484 148 Z" fill="url(#iglass)" opacity=".92"/>
-      <line x1="400" y1="110" x2="410" y2="152" stroke="#1e2635" stroke-width="5"/>
-      <path d="M70 186 Q200 172 300 176 L740 172" stroke="#3c4a62" stroke-width="1.5" fill="none"/>
-      <path d="M90 190 Q300 178 750 170" stroke="#f3b35a" stroke-width="1.6" opacity=".55" fill="none"/>
-      <rect x="752" y="162" width="14" height="30" rx="2" fill="#0b0f16" stroke="#5a6a85"/>
-      <circle cx="759" cy="170" r="4.5" fill="#ffe2b8"/>
-      <path d="M48 186 L62 184 L62 198 L48 200 Z" fill="#c1272d"/>
-      <path d="M100 172 L142 170 L140 175 L100 177 Z" fill="#11161f"/>
-      <g class="hood"><path d="M498 148 L752 156 L752 164 L500 156 Z" fill="#141215" stroke="#7a6152" stroke-width="1.2"/><path d="M600 151 L690 154 L688 158 L602 155 Z" fill="#1e2635"/></g>
-      <g transform="translate(194 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#141416" stroke="#4a4a52" stroke-width="2"/><g stroke="#2e2e34" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#55555c"/></g>
-      <g transform="translate(612 228)"><circle r="46" fill="#0b0f16"/><circle r="32" fill="#141416" stroke="#4a4a52" stroke-width="2"/><g stroke="#2e2e34" stroke-width="5"><line x1="0" y1="-28" x2="0" y2="28"/><line x1="-28" y1="0" x2="28" y2="0"/><line x1="-20" y1="-20" x2="20" y2="20"/><line x1="-20" y1="20" x2="20" y2="-20"/></g><circle r="7" fill="#55555c"/></g>
+    <g id="carGroup">
+      <ellipse cx="460" cy="352" rx="390" ry="26" fill="#000" opacity=".55"/>
+      <ellipse cx="782" cy="300" rx="22" ry="34" fill="#050506"/>
+      <path d="M110 284 Q98 250 122 222 L300 206 L500 206 L648 233 L652 302 L600 314 L330 298 Z" fill="#0d0c0e"/>
+      <path d="M190 208 Q262 158 330 147 L420 151 L500 206 Z" fill="url(#gGlass)"/>
+      <path d="M500 206 L650 190 L560 142 L420 151 Z" fill="url(#gGlass)"/>
+      <path d="M420 151 L560 142 L470 132 L330 147 Z" fill="#141215"/>
+      <path d="M648 233 L800 225 L806 284 L652 302 Z" fill="#08080a"/>
+      <path d="M672 262 L782 254 L784 276 L674 284 Z" fill="#141214" stroke="#3a3034"/>
+      <circle cx="690" cy="252" r="9" fill="#121012" stroke="#5c4a3c" stroke-width="2"/>
+      <circle cx="770" cy="246" r="8" fill="#121012" stroke="#5c4a3c" stroke-width="2"/>
+      <g id="bay" opacity="0">
+        <path d="M500 206 L648 233 L800 225 L650 190 Z" fill="#060506"/>
+        <ellipse cx="655" cy="212" rx="150" ry="40" fill="url(#gBay)" clip-path="url(#cBay)"/>
+      </g>
+      <path id="hood" d="M500 206 L648 233 L800 225 L650 190 Z" fill="#0c0b0d" stroke="#f3b35a" stroke-width="1.6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" filter="url(#fGlow)"/>
+      <g id="engineWrap" transform="translate(656 196) scale(1.45) translate(-656 -178)"><g id="engine" opacity="0">
+        <rect x="586" y="176" width="140" height="40" rx="6" fill="#1b191c" stroke="#7a6152" stroke-width="1.5"/>
+        <g id="cyls"></g>
+        <rect x="580" y="128" width="152" height="12" rx="4" fill="#26222a" stroke="#a07a55" stroke-width="1.2"/>
+      </g></g>
+      <g class="wheel"><ellipse cx="252" cy="294" rx="40" ry="47" fill="#050506"/><ellipse cx="252" cy="294" rx="26" ry="31" fill="#0f0e10" stroke="#3a3238" stroke-width="2"/></g>
+      <g class="wheel"><ellipse cx="592" cy="314" rx="46" ry="55" fill="#050506"/><ellipse cx="592" cy="314" rx="30" ry="36" fill="#0f0e10" stroke="#3a3238" stroke-width="2"/></g>
+      <g id="lines" fill="none" stroke="#f3b35a" stroke-width="1.8" stroke-linecap="round" filter="url(#fGlow)">
+        <path pathLength="1" d="M188 210 Q262 158 330 147 L420 151 L560 141"/>
+        <path pathLength="1" d="M122 236 Q380 224 648 246"/>
+        <path pathLength="1" d="M500 206 L430 151"/>
+        <path pathLength="1" d="M650 190 L560 142"/>
+        <path pathLength="1" d="M205 278 Q252 228 300 280"/>
+        <path pathLength="1" d="M540 302 Q592 238 646 304"/>
+        <path pathLength="1" d="M652 302 L806 284"/>
+        <path pathLength="1" d="M648 233 L652 302"/>
+        <path pathLength="1" d="M110 284 Q98 250 122 222"/>
+      </g>
     </g>
-    <g class="intro-name">
-      <text x="620" y="12" text-anchor="middle" class="n1">RAJESH YADAV GORLA</text>
-      <text x="620" y="38" text-anchor="middle" class="n2">MECHANICAL DESIGN ENGINEER</text>
+    <g id="introName" opacity="0">
+      <text x="600" y="34" text-anchor="middle" class="n1">RAJESH YADAV GORLA</text>
+      <text x="600" y="58" text-anchor="middle" class="n2">MECHANICAL DESIGN ENGINEER</text>
     </g>
   </svg>
   <button type="button" class="intro-sound" id="intro-sound">&#9654; Replay with sound</button>
@@ -328,47 +339,69 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 </div>
 <script>
 (function(){
-var el=document.getElementById('intro'),show=false,timer=null,ctx=null;
+var el=document.getElementById('intro'),show=false;
 try{show=!sessionStorage.getItem('introSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);sessionStorage.setItem('introSeen','1');}catch(e){show=false;}
 if(!show){el.remove();return;}
-function start(){el.classList.remove('play');void el.offsetWidth;el.classList.add('play');clearTimeout(timer);timer=setTimeout(done,4400);}
-function done(){if(!el.isConnected)return;if(ctx){try{ctx.close();}catch(e){}}el.classList.add('out');setTimeout(function(){el.remove();},600);}
-function noise(c,dur){var n=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate),d=n.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;var s=c.createBufferSource();s.buffer=n;return s;}
+el.classList.add('play');
+var NS='http://www.w3.org/2000/svg',cyls=document.getElementById('cyls'),pistons=[],rods=[];
+for(var i=0;i<4;i++){var x=600+i*30;
+  var s=document.createElementNS(NS,'rect');s.setAttribute('x',x);s.setAttribute('y',140);s.setAttribute('width',22);s.setAttribute('height',52);s.setAttribute('rx',2);s.setAttribute('fill','#0a090b');s.setAttribute('stroke','#6b5446');cyls.appendChild(s);
+  var r=document.createElementNS(NS,'line');r.setAttribute('stroke','#9b9188');r.setAttribute('stroke-width','3');cyls.appendChild(r);rods.push(r);
+  var p=document.createElementNS(NS,'rect');p.setAttribute('x',x+2);p.setAttribute('width',18);p.setAttribute('height',14);p.setAttribute('rx',2);p.setAttribute('fill','url(#gMetal)');cyls.appendChild(p);pistons.push(p);}
+var lines=Array.prototype.slice.call(document.querySelectorAll('#lines path'));lines.forEach(function(l){l.setAttribute('stroke-dasharray','1');l.setAttribute('stroke-dashoffset','1');});
+var hood=document.getElementById('hood'),bay=document.getElementById('bay'),eng=document.getElementById('engine'),nm=document.getElementById('introName'),car=document.getElementById('carGroup');
+var W1=[500,206],W2=[650,190],N0=[648,233],F0=[800,225],N1=[548,96],F1=[700,84];
+var T0=2.8, END=6.8, start=0, raf=0, crank=0, last=0, ctx=null, ended=false;
+function ease(x){x=Math.max(0,Math.min(1,x));return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
+function seg(t,a,b){return ease((t-a)/(b-a));}
+// rpm schedule shared by visuals and sound (seconds after engine start)
+var RPM=[[0,0],[0.05,320],[0.35,1300],[0.85,850],[1.3,850],[1.65,3200],[2.1,900],[3.6,900],[4.0,600]];
+function rpmAt(s){if(s<=0)return 0;for(var k=1;k<RPM.length;k++){if(s<=RPM[k][0]){var a=RPM[k-1],b=RPM[k],f=(s-a[0])/(b[0]-a[0]);return a[1]+(b[1]-a[1])*f;}}return RPM[RPM.length-1][1];}
+function frame(now){
+  if(!start)start=now;var t=(now-start)/1000,dt=last?(now-last)/1000:0;last=now;
+  car.setAttribute('transform','translate('+(-60*(1-seg(t,0,1.0)))+' 0)');car.style.opacity=seg(t,0,0.8);
+  lines.forEach(function(l,i){l.setAttribute('stroke-dashoffset',1-seg(t,0.6+i*0.08,1.5+i*0.08));});
+  hood.setAttribute('stroke-dashoffset',1-seg(t,0.9,1.8));
+  var h=seg(t,1.9,2.7),N=[N0[0]+(N1[0]-N0[0])*h,N0[1]+(N1[1]-N0[1])*h],F=[F0[0]+(F1[0]-F0[0])*h,F0[1]+(F1[1]-F0[1])*h];
+  hood.setAttribute('d','M'+W1+' L'+N+' L'+F+' L'+W2+' Z');hood.setAttribute('fill',h>.45?'#2a2426':'#0c0b0d');
+  bay.setAttribute('opacity',seg(t,1.95,2.5));var eo=seg(t,2.2,2.8);eng.setAttribute('opacity',eo);eng.setAttribute('transform','translate(0 '+(26*(1-eo))+')');
+  var rpm=rpmAt(t-T0);crank+=dt*(rpm/60)*2*Math.PI*0.28;
+  for(var i=0;i<4;i++){var ph=crank+(i%3===0?0:Math.PI),y=163+12*Math.cos(ph),cx=611+i*30;
+    pistons[i].setAttribute('y',y-7);rods[i].setAttribute('x1',cx);rods[i].setAttribute('y1',y+5);rods[i].setAttribute('x2',cx+6*Math.sin(ph));rods[i].setAttribute('y2',206);}
+  var no=seg(t,3.3,4.1);nm.setAttribute('opacity',no);nm.setAttribute('transform','translate(0 '+(30*(1-no))+')');
+  if(t>=END){done();return;}
+  raf=requestAnimationFrame(frame);}
+function play(){cancelAnimationFrame(raf);start=0;last=0;crank=0;raf=requestAnimationFrame(frame);}
+function done(){if(ended)return;ended=true;cancelAnimationFrame(raf);if(ctx){var c=ctx;setTimeout(function(){try{c.close();}catch(e){}},700);}el.classList.add('out');setTimeout(function(){el.remove();},650);}
+function noiseBuf(c,dur){var n=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate),d=n.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;return n;}
 function sound(){
-  var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
-  try{ctx=new AC();}catch(e){return;}
-  var c=ctx,t=c.currentTime+0.05,out=c.createGain();out.gain.value=0.55;out.connect(c.destination);
-  // engine: V8-style burble (low saws, lumpy idle, soft distortion)
-  var ws=c.createWaveShaper(),curve=new Float32Array(1024);for(var k=0;k<1024;k++){var x=k/512-1;curve[k]=Math.tanh(2.2*x);}ws.curve=curve;
-  var lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=300;lp.Q.value=5;
-  var lope=c.createGain();lope.gain.value=1;
-  var eg=c.createGain();eg.gain.setValueAtTime(0,t);eg.gain.linearRampToValueAtTime(0.55,t+0.12);
-  eg.gain.setValueAtTime(0.55,t+1.0);eg.gain.linearRampToValueAtTime(0.3,t+1.4);eg.gain.setValueAtTime(0.3,t+3.4);eg.gain.linearRampToValueAtTime(0,t+4.2);
-  ws.connect(lp);lp.connect(lope);lope.connect(eg);eg.connect(out);
-  var am=c.createOscillator(),amg=c.createGain();am.type='square';amg.gain.value=0.45;
-  am.frequency.setValueAtTime(7,t);am.frequency.linearRampToValueAtTime(19,t+0.55);am.frequency.linearRampToValueAtTime(6.5,t+1.5);
-  am.connect(amg);amg.connect(lope.gain);am.start(t);am.stop(t+4.3);
-  [0,-9,12].forEach(function(det,idx){var o=c.createOscillator();o.type=idx===2?'square':'sawtooth';o.detune.value=det;
-    var base=idx===2?0.5:1;
-    o.frequency.setValueAtTime(30*base,t);o.frequency.exponentialRampToValueAtTime(96*base,t+0.55);o.frequency.exponentialRampToValueAtTime(58*base,t+0.95);o.frequency.exponentialRampToValueAtTime(33*base,t+1.6);
-    var g=c.createGain();g.gain.value=idx===2?0.35:0.5;o.connect(g);g.connect(ws);o.start(t);o.stop(t+4.3);});
-  lp.frequency.setValueAtTime(260,t);lp.frequency.linearRampToValueAtTime(1000,t+0.55);lp.frequency.linearRampToValueAtTime(280,t+1.5);
-  // latch click as the hood releases
-  var ck=noise(c,0.05),hp=c.createBiquadFilter(),cg=c.createGain();hp.type='highpass';hp.frequency.value=2500;
-  cg.gain.setValueAtTime(0.9,t+1.1);cg.gain.exponentialRampToValueAtTime(0.001,t+1.15);ck.connect(hp);hp.connect(cg);cg.connect(out);ck.start(t+1.1);
-  // whoosh as the light rises
-  var wh=noise(c,1.4),bp=c.createBiquadFilter(),wg=c.createGain();bp.type='bandpass';bp.Q.value=1.2;
-  bp.frequency.setValueAtTime(300,t+1.4);bp.frequency.exponentialRampToValueAtTime(2400,t+2.6);
-  wg.gain.setValueAtTime(0,t+1.4);wg.gain.linearRampToValueAtTime(0.35,t+2.1);wg.gain.linearRampToValueAtTime(0,t+2.8);
-  wh.connect(bp);bp.connect(wg);wg.connect(out);wh.start(t+1.4);
-  // thud as the hood reaches the top
-  var th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(95,t+2.1);th.frequency.exponentialRampToValueAtTime(45,t+2.35);
-  tg.gain.setValueAtTime(0.9,t+2.1);tg.gain.exponentialRampToValueAtTime(0.001,t+2.45);th.connect(tg);tg.connect(out);th.start(t+2.1);th.stop(t+2.5);
+  var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;try{ctx=new AC();}catch(e){return;}
+  var c=ctx,now=c.currentTime+0.05,t0=now+T0,endT=t0+4.0;
+  var comp=c.createDynamicsCompressor();comp.threshold.value=-18;comp.ratio.value=4;
+  var master=c.createGain();master.gain.value=0.6;comp.connect(master);master.connect(c.destination);
+  // latch click and hood thud (soft)
+  var ck=c.createBufferSource();ck.buffer=noiseBuf(c,0.04);var hp=c.createBiquadFilter();hp.type='highpass';hp.frequency.value=3000;var cg=c.createGain();
+  cg.gain.setValueAtTime(0.35,now+1.9);cg.gain.exponentialRampToValueAtTime(0.001,now+1.94);ck.connect(hp);hp.connect(cg);cg.connect(comp);ck.start(now+1.9);
+  var th=c.createOscillator(),tg=c.createGain();th.type='sine';th.frequency.setValueAtTime(110,now+2.7);th.frequency.exponentialRampToValueAtTime(55,now+2.9);
+  tg.gain.setValueAtTime(0.0001,now+2.69);tg.gain.exponentialRampToValueAtTime(0.5,now+2.71);tg.gain.exponentialRampToValueAtTime(0.001,now+3.0);th.connect(tg);tg.connect(comp);th.start(now+2.69);th.stop(now+3.05);
+  // engine: firing frequency = rpm/60*4 (V8)
+  var tone=c.createOscillator(),sub=c.createOscillator(),edge=c.createOscillator(),lope=c.createOscillator();
+  tone.type='triangle';sub.type='sine';edge.type='sawtooth';lope.type='sine';
+  var lp=c.createBiquadFilter();lp.type='lowpass';lp.Q.value=0.9;
+  var gTone=c.createGain(),gSub=c.createGain(),gEdge=c.createGain();gTone.gain.value=0.55;gSub.gain.value=0.5;gEdge.gain.value=0.08;
+  var amp=c.createGain();amp.gain.value=0.7;var lopeDepth=c.createGain();lopeDepth.gain.value=0.3;lope.connect(lopeDepth);lopeDepth.connect(amp.gain);
+  var env=c.createGain();env.gain.setValueAtTime(0.0001,t0);env.gain.exponentialRampToValueAtTime(0.8,t0+0.25);env.gain.setValueAtTime(0.8,endT-0.6);env.gain.exponentialRampToValueAtTime(0.0001,endT);
+  tone.connect(gTone);sub.connect(gSub);edge.connect(gEdge);gTone.connect(lp);gSub.connect(lp);gEdge.connect(lp);lp.connect(amp);amp.connect(env);env.connect(comp);
+  // exhaust breath
+  var ns=c.createBufferSource();ns.buffer=noiseBuf(c,4.2);var bp=c.createBiquadFilter();bp.type='bandpass';bp.Q.value=0.9;var gN=c.createGain();gN.gain.value=0.12;ns.connect(bp);bp.connect(gN);gN.connect(amp);
+  RPM.forEach(function(p,k){var at=t0+p[0],f=Math.max(p[1],60)/60*4;var m=k===0?'setValueAtTime':'linearRampToValueAtTime';
+    tone.frequency[m](f,at);sub.frequency[m](f/2,at);edge.frequency[m](f,at);lope.frequency[m](f/4,at);lp.frequency[m](Math.min(3*f+150,2200),at);bp.frequency[m](2*f,at);});
+  [tone,sub,edge,lope].forEach(function(o){o.start(t0);o.stop(endT+0.05);});ns.start(t0);ns.stop(endT+0.05);
 }
 document.getElementById('intro-skip').addEventListener('click',function(e){e.stopPropagation();done();});
-document.getElementById('intro-sound').addEventListener('click',function(e){e.stopPropagation();if(ctx){try{ctx.close();}catch(x){}ctx=null;}start();sound();this.textContent='♪ Sound on';this.disabled=true;});
+document.getElementById('intro-sound').addEventListener('click',function(e){e.stopPropagation();if(ctx){try{ctx.close();}catch(x){}ctx=null;}play();sound();this.textContent='♪ Sound on';this.disabled=true;});
 el.addEventListener('click',done);
-start();
+play();
 })();
 </script>
 <div class="wrap">
