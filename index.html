@@ -242,7 +242,7 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 .intro-sound { position: absolute; left: max(16px, env(safe-area-inset-left, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: var(--accent); color: #0f1d33; border: 1.5px solid var(--accent); cursor: pointer; }
 .intro-sound:disabled { background: transparent; color: #f59a3c; cursor: default; }
 .intro-skip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); font: 600 13px/1 var(--body); padding: 10px 14px; background: transparent; color: #eef3f9; border: 1.5px solid rgba(255,255,255,.5); cursor: pointer; }
-.intro { place-items: center; align-content: center; padding: 16px; overflow: hidden; background: #0d0b0c; }
+.intro { place-items: center; align-content: center; padding: 16px; overflow: hidden; background: radial-gradient(70vw 60vh at 50% 42%, #1f2a3d 0%, #121822 45%, #07090d 100%); }
 .intro-bg { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; background: url(assets/toy-intro-poster.jpg) center / cover; filter: blur(28px) brightness(.45) saturate(1.2); }
 .intro-frame { position: relative; height: min(82vh, 640px); aspect-ratio: 474 / 560; max-width: calc(100vw - 32px); box-shadow: 0 30px 80px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.12); overflow: hidden; animation: frame-in .9s cubic-bezier(.2,.8,.2,1) both; }
 .intro-vid { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -292,7 +292,6 @@ dialog.detail .dlg-body > .card-item.wide { display: grid; gap: 14px; }
 </head>
 <body>
 <div class="intro" id="intro" aria-hidden="true">
-  <video class="intro-bg" muted playsinline preload="auto"><source src="assets/toy-intro.webm" type="video/webm"><source src="assets/toy-intro.mp4" type="video/mp4"></video>
   <div class="intro-frame">
     <video class="intro-vid" id="introVid" poster="assets/toy-intro-poster.jpg" muted playsinline preload="auto"><source src="assets/toy-intro.webm" type="video/webm"><source src="assets/toy-intro.mp4" type="video/mp4"></video>
     <div class="intro-caption" id="introName">
@@ -310,7 +309,7 @@ var el=document.getElementById('intro'),show=false;
 try{show=!sessionStorage.getItem('introSeen')&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);sessionStorage.setItem('introSeen','1');}catch(e){show=false;}
 if(!show){el.remove();return;}
 el.classList.add('play');
-var vids=el.querySelectorAll('video'),ctx=null,ended=false,timer=0;
+var vids=Array.prototype.slice.call(el.querySelectorAll('video')),ctx=null,ended=false,timer=0;
 var T0=0.4;
 var RPM=[[0,0],[0.05,320],[0.35,1300],[0.85,850],[1.4,850],[1.9,3400],[2.4,900],[4.0,900],[4.5,600]];
 function play(){ended=false;clearTimeout(timer);el.classList.remove('named');vids.forEach(function(v){try{v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}});
